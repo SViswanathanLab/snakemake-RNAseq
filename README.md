@@ -2,14 +2,49 @@
 This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignment, RSEM & salmon quantification.
 
 ## Directory structure
-
+```
+.
+├── scripts                # Scripts to run each step of RNAseq
+├── rules                  # Snakemake rules
+├── Snakefile              # Snakemake workflow
+├── samples.tsv            # Sample sheet with sample names & RNAseq file names, created by users
+├── job_template.sh        # A template for argos job submission, modified by users as needed
+└── README.md
+```
 ## Installation
-
+Clone the pipeline using the following command
+```
+git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
+```
 ## Usage 
-#### Instructions for preparing sample sheet
+### Instructions for preparing sample sheet
+* Paired-end data is assumed.
+* 3 types of RNAseq data formats are accommodated: .fastq.gz, .fq.gz, .fastq
+* The samples.tsv file should be modified to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
+* The fq1 & fq2 file names must contain the full sample names.
+  
+  For example: 
+```
+293T-TFE3-1 293T-TFE3-1_R1_001.fastq.gz 293T-TFE3-1_R2_001.fastq.gz
+293T-TFE3-2 293T-TFE3-2_R1_001.fastq.gz 293T-TFE3-2_R2_001.fastq.gz
+```
+### Input files
+* Users should create a folder named ```data``` in the directory of ```snakemake-RNAseq```.
+* The fq1 & fq2 files for analysis should be copied to ```data```.
 
-#### Input files
+### Run snakemake
+* Since the analysis takes time, we would recommend submitting it as a job to avoid being interrupted. The template of the job submission script is provided as ```job_template.sh```.
+* Modify the name of the directory containing the Snakefile as needed.
 
-#### Run snakemake
-
-#### Output
+### Output
+* The results are saved in the folder ```snakemake-RNAseq/results```.
+    * ```snakemake-RNAseq/results/fastqc_results``` contains the fastqc results.
+    * ```snakemake-RNAseq/results/STAR_results``` contains the STAR results, and each subfolder is named by the sample name.
+    * ```snakemake-RNAseq/results/salmon_results``` contains the salmon results, and each subfolder is named by the sample name.
+    * ```snakemake-RNAseq/results/star_wide_countMatrix.csv``` and ```snakemake-RNAseq/results/star_wide_countMatrix.Rds``` contain the star count matrix, with genes as rows and samples as columns, in both .csv and .Rds format.
+    * ```snakemake-RNAseq/results/salmon_wide_TPM_Matrix.csv``` and ```snakemake-RNAseq/results/salmon_wide_TPM_Matrix.Rds``` contain the salmon TPM matrix, with genes as rows and samples as columns, in both .csv and .Rds format.
+    * ```snakemake-RNAseq/results/rsem_geneLevel_wide_TPM_Matrix.csv``` and ```snakemake-RNAseq/results/rsem_geneLevel_wide_TPM_Matrix.Rds``` contain the rsem gene-level TPM matrix, with genes as rows and samples as columns, in both .csv and .Rds format.
+    * ```snakemake-RNAseq/results/rsem_isoformLevel_wide_TPM_Matrix.csv``` and ```snakemake-RNAseq/results/rsem_isoformLevel_wide_TPM_Matrix.Rds``` contain the rsem transcript-level TPM matrix, with genes as rows and samples as columns, in both .csv and .Rds format.
+* ```snakemake-RNAseq/rsem_ref``` contains the reference files generated for rsem quantification.
+* ```snakemake-RNAseq/logs``` contains the log files for running each step of this analysis, for debugging.
+* ```snakemake-RNAseq/joblogs``` contains the log files for job submission, for debugging.
