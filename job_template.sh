@@ -3,8 +3,8 @@
 source /mnt/storage/apps/Mambaforge-23.1.0-1/bin/activate snakemake
 #$ -S /bin/bash
 #$ -q all.q
-#$ -pe pvm 8
-#$ -l m_mem_free=16000M
+#$ -pe pvm 32
+#$ -l h_vmem=64G
 #$ -o $HOME/snakemake-RNAseq/joblogs/
 #$ -e $HOME/snakemake-RNAseq/joblogs/
 
