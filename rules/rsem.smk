@@ -28,6 +28,8 @@ rule rsem_quant:
         "results/rsem_results/{Sample}/{Sample}.isoforms.results",
     log:
         "logs/rsem_quant/{Sample}.log"
+    params:
+        threads=20
     script:
         "../scripts/rsemQuant.sh"
 
@@ -40,7 +42,6 @@ rule rsem_gene_TPM:
         "results/rsem_geneLevel_wide_TPM_Matrix.Rds",
     log:
         "logs/rsem_geneLevel_TPM_Matrix.log"
-    threads: 8
     script:
         "../scripts/rsem_gene_TPM.py"
 
@@ -53,6 +54,5 @@ rule rsem_isoform_TPM:
         "results/rsem_isoformLevel_wide_TPM_Matrix.Rds",
     log:
         "logs/rsem_isoformLevel_TPM_Matrix.log"
-    threads: 8
     script:
         "../scripts/rsem_isoform_TPM.py"
