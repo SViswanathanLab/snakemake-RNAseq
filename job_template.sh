@@ -13,4 +13,4 @@ cd $HOME/snakemake-RNAseq
 
 # Run Snakemake
 snakemake --unlock
-snakemake --cores 50 --latency-wait 60
+snakemake --jobs 50 --latency-wait 60
