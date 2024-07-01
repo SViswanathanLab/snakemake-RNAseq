@@ -12,13 +12,14 @@ r2="${reads[1]}"
 
 GENOMEDIR="${snakemake_input[index]}"
 OUTDIR=$(dirname "${snakemake_output[0]}")
+THREADS=${snakemake_params[threads]}
 
 # Create output directory if it does not exist
 mkdir -p $OUTDIR
 
 salmon quant -i $GENOMEDIR \
 -l A \
--p 30 \
+-p $THREADS \
 -1 "${r1}" \
 -2 "${r2}" \
 -o "${OUTDIR}/" \
