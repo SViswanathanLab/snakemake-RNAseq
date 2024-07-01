@@ -4,12 +4,13 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 ## Directory structure
 ```
 .
-├── scripts                # Scripts to run each step of RNAseq
-├── rules                  # Snakemake rules
-├── Snakefile              # Snakemake workflow
-├── samples.tsv            # Sample sheet with sample names & RNAseq file names, created by users
-├── job_template.sh        # A template for argos job submission, modified by users as needed
-└── README.md
+├── config            # Contains sample sheet (samples.tsv) and config file (config.yaml)
+├── rules             # Snakemake rules
+├── scripts           # Scripts to run each step of RNAseq
+├── README.md
+├── Snakefile         # Snakemake workflow
+└── job_template.sh   # A template for argos job submission, modified by users as needed
+
 ```
 ## Installation
 Clone the pipeline using the following command
