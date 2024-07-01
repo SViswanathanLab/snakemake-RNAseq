@@ -1,15 +1,17 @@
+configfile: "./config/config.yaml"
+
 # reference files paths
-annotation_path = "/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/annotation_ensblID_genesymbol_transcriptID_20240512.txt"
-STAR_index_path="/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/STAR_index"
-gtf_path="/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/gencode.v45.primary_assembly.annotation.gtf"
-salmon_index_path="/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/salmon_index/GRCh38.transcripts_index"
-fa_path="/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/GRCh38.primary_assembly.genome.fa"
+annotation_path = config["annotation_path"]
+STAR_index_path = config["STAR_index_path"]
+gtf_path = config["gtf_path"]
+salmon_index_path = config["salmon_index_path"]
+fa_path = config["fa_path"]
 
 # Read samples.tsv to extract Samples, fq1, fq2
 Samples = []
 fq1 = []
 fq2 = []
-with open("samples.tsv") as file:
+with open(config["samples"]) as file:
     for line in file:
         l = line.strip().split(' ')
         if len(l) == 3:
