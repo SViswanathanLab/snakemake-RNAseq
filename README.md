@@ -52,3 +52,14 @@ There should be a folder named ```snakemake-RNAseq``` in users' working director
 * ```snakemake-RNAseq/rsem_ref``` contains the reference files generated for rsem quantification.
 * ```snakemake-RNAseq/logs``` contains the log files for running each step of this analysis, for debugging.
 * ```snakemake-RNAseq/joblogs``` contains the log files for job submission, for debugging.
+
+### config
+```config.yaml``` contains the information about versions of each tool used, reference files paths
+* Modules versions (globally installed on argos):
+    * fastqc: 0.11.7
+    * star: 2.7.10a
+    * rsem: 1.3.1
+    * salmon: 1.10.1
+    * snakemake: 7.25.0
+* Reference files directory: ```/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/```
+    * Can be modified as needed
