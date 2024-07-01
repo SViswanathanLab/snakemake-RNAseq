@@ -13,12 +13,13 @@ GTFFILE="${snakemake_input[gtf]}"
 
 OUTDIR=$(dirname "${snakemake_output[0]}")
 sample_name=$(basename "$OUTDIR")
+THREADS=${snakemake_params[threads]}
 
 # Create output directory if it does not exist
 mkdir -p $OUTDIR
 
 if [[ "$r1" == *".gz"* ]]; then
-  STAR --runThreadN 30 \
+  STAR --runThreadN $THREADS \
   --genomeDir $GENOMEDIR \
   --readFilesIn "${r1}" "${r2}" \
   --outFileNamePrefix "${OUTDIR}/${sample_name}_" \
@@ -31,7 +32,7 @@ if [[ "$r1" == *".gz"* ]]; then
   --outMultimapperOrder Random \
   --outWigType wiggle
 else
-  STAR --runThreadN 30 \
+  STAR --runThreadN $THREADS \
   --genomeDir $GENOMEDIR \
   --readFilesIn "${r1}" "${r2}" \
   --outFileNamePrefix "${OUTDIR}/${sample_name}_" \
