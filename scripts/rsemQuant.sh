@@ -8,12 +8,13 @@ count_path="${snakemake_input[counts]}"
 ref_path="rsem_ref/human_gencode"
 count_file=$(basename "$count_path")
 sample_name="${count_file%_Aligned.toTranscriptome.out.bam}"
+THREADS=${snakemake_params[threads]}
 
 OUTDIR=$(dirname "${snakemake_output[0]}")
 
 mkdir -p $OUTDIR # create output directory if it does not exist
 
-rsem-calculate-expression -p 30 \
+rsem-calculate-expression -p $THREADS \
 --bam \
 --seed 12345 \
 --paired-end \
