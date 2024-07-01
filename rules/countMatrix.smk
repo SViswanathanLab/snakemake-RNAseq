@@ -7,6 +7,5 @@ rule STARcount:
         "results/star_wide_countMatrix.Rds",
     log:
         "logs/countMatrix.log"
-    threads: 8
     script:
         "../scripts/countMatrix.py"
