@@ -6,7 +6,8 @@ rule salmon_quant:
         "results/salmon_results/{Sample}/quant.sf"
     log:
         "logs/salmon_quant/{Sample}.log"
-    threads: 30
+    params:
+        threads=20
     script:
         "../scripts/salmonQuant.sh"
 
@@ -19,6 +20,5 @@ rule salmon_TPM:
         "results/salmon_wide_TPM_Matrix.Rds",
     log:
         "logs/salmonTPM_Matrix.log"
-    threads: 8
     script:
         "../scripts/salmonTPM.py"
