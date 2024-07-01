@@ -17,11 +17,14 @@ Clone the pipeline using the following command
 ```
 git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ```
+There should be a folder named ```snakemake-RNAseq``` in users' working directory. If users modify the name of this folder, they should also modify the contents of ```job_template.sh``` to make the name of the directory containing ```Snakefile``` consistent with the modified folder name. 
+
 ## Usage 
 ### Instructions for preparing sample sheet
 * Paired-end data is assumed.
-* 3 types of RNAseq data formats are accommodated: .fastq.gz, .fq.gz, .fastq
-* The samples.tsv file should be modified to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
+* 3 types of RNAseq data formats are accommodated: **.fastq.gz, .fq.gz, .fastq**
+* The ```samples.tsv``` file is an example sample sheet.
+* Users should modify ```samples.tsv``` to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
 * The fq1 & fq2 file names must contain the full sample names.
   
   For example: 
@@ -30,7 +33,7 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 293T-TFE3-2 293T-TFE3-2_R1_001.fastq.gz 293T-TFE3-2_R2_001.fastq.gz
 ```
 ### Input files
-* Users should create a folder named ```data``` in the directory of ```snakemake-RNAseq```.
+* Users should **create a folder named ```data``` in the directory of ```snakemake-RNAseq```**.
 * The fq1 & fq2 files for analysis should be copied to ```data```.
 
 ### Run snakemake
