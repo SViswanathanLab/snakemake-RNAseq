@@ -6,7 +6,6 @@ rule fastqc:
         "results/fastqc_results/{Read}_fastqc.html",
     log:
         "logs/fastqc/{Read}.log"
-    threads: 30
     shell:
         """
         source /etc/profile.d/modules.sh
