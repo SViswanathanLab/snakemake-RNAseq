@@ -13,6 +13,7 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 ```
 ## Installation
 ### Option 1: Download the package
+<img width="935" alt="Screenshot 2024-07-09 at 3 37 12 PM" src="https://github.com/SViswanathanLab/snakemake-RNAseq/assets/143852554/394a5529-ffca-4222-acf1-6936989d65a8">
 
 
 ### Option 2: git clone
