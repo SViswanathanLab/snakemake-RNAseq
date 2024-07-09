@@ -19,10 +19,17 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 
 * The folder named ```snakemake-RNAseq-main``` is downloaded.
 * Transfer the folder to users' working directory on argos.
+  ```
+  scp -r path/to/snakemake-RNAseq-main USER_ID@argos-stgw2.dfci.harvard.edu:/mnt/storage/home/USER_ID/
+  ```
+* Log onto argos:
+  ```
+  ssh USER_ID@argos.dfci.harvard.edu
+  ```
 * Change the name of the folder to ```snakemake-RNAseq```
-```
-mv snakemake-RNAseq-main snakemake-RNAseq
-```
+  ```
+  mv snakemake-RNAseq-main snakemake-RNAseq
+  ```
 
 ### Option 2: git clone
 Clone the pipeline using the following command
