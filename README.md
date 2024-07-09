@@ -13,6 +13,10 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 
 ```
 ## Installation
+### Option 1: Download the package
+
+
+### Option 2: git clone
 Clone the pipeline using the following command
 ```
 git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
@@ -37,9 +41,27 @@ There should be a folder named ```snakemake-RNAseq``` in users' working director
 * The fq1 & fq2 files for analysis should be copied to ```data```.
 
 ### Run snakemake
-* Since the analysis takes time, we would recommend submitting it as a job to avoid being interrupted. The template of the job submission script is provided as ```job_template.sh```.
-* Modify the name of the directory containing the Snakefile as needed.
+* Step 1: Change into the directory ```snakemake-RNAseq```
+  ```
+  cd $HOME/snakemake-RNAseq
+  ```
+* Step 2: Activate the environment with snakemake installed & install plugin for cluster submission
+  ```
+  source /mnt/storage/apps/Mambaforge-23.1.0-1/etc/profile.d/conda.sh
+  conda activate snakemake
 
+  pip install snakemake-executor-plugin-cluster-generic
+  ```
+* Step 3: Run snakemake pipeline
+  ```
+  snakemake --executor cluster-generic --jobs 50 --latency-wait 60 --cluster-generic-submit-cmd "qsub -l h_vmem=64G, -pe pvm 32 -o $HOME/snakemake-RNAseq/joblogs/ -e $HOME/snakemake-RNAseq/joblogs/"
+  ```
+  This step might take long, depending on the sample sizes.
+  If the command execution is interrupted, users need to rerun Step 3 to generate all results expected.
+* Step 4: Deactivate the environment as needed
+  ```
+  conda deactivate
+  ```
 ### Output
 * The results are saved in the folder ```snakemake-RNAseq/results```.
     * ```snakemake-RNAseq/results/fastqc_results``` contains the fastqc results.
@@ -60,6 +82,7 @@ There should be a folder named ```snakemake-RNAseq``` in users' working director
     * star: 2.7.10a
     * rsem: 1.3.1
     * salmon: 1.10.1
-    * snakemake: 7.25.0
+    * snakemake: 8.15.2
+    * snakemake-executor-plugin-cluster-generic: 1.0.9
 * Reference file directory: ```/mnt/storage/labs/sviswanathan/snakemake_RNAseq_2024/Human_genome_2024/```
     * Can be modified as needed
