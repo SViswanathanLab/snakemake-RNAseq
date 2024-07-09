@@ -20,7 +20,7 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 * The folder named ```snakemake-RNAseq-main``` is downloaded.
 * Transfer the folder to users' working directory on argos.
   ```
-  scp -r path/to/snakemake-RNAseq-main USER_ID@argos-stgw2.dfci.harvard.edu:/mnt/storage/home/USER_ID/
+  scp -r path/to/snakemake-RNAseq-main <USER_ID>@argos-stgw2.dfci.harvard.edu:/mnt/storage/home/<USER_ID>/
   ```
 * Log onto argos:
   ```
@@ -28,7 +28,7 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
   ```
 * Change the name of the folder to ```snakemake-RNAseq```
   ```
-  mv snakemake-RNAseq-main snakemake-RNAseq
+  mv $HOME/snakemake-RNAseq-main $HOME/snakemake-RNAseq
   ```
 
 ### Option 2: git clone
@@ -57,11 +57,11 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ### Input files
 * The fq1 & fq2 files for analysis should be copied to ```data```.
   ```
-  cp -r path/to/fq files folder $HOME/snakemake-RNAseq/
+  cp -r path/to/<fq_files_folder> $HOME/snakemake-RNAseq/
   ```
 * Users should **change the name of the folder containing fq files into ```data```**.
   ```
-  mv $HOME/snakemake-RNAseq/FOLDER_NAME $HOME/snakemake-RNAseq/data
+  mv $HOME/snakemake-RNAseq/<fq_files_folder> $HOME/snakemake-RNAseq/data
   ```
   
 ### Run snakemake
