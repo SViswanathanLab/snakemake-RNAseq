@@ -13,15 +13,23 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 ```
 ## Installation
 ### Option 1: Download the package
+
+* Choose "Download ZIP"
 <img width="935" alt="Screenshot 2024-07-09 at 3 37 12 PM" src="https://github.com/SViswanathanLab/snakemake-RNAseq/assets/143852554/394a5529-ffca-4222-acf1-6936989d65a8">
 
+* The folder named ```snakemake-RNAseq-main``` is downloaded.
+* Transfer the folder to users' working directory on argos.
+* Change the name of the folder to ```snakemake-RNAseq```
+```
+mv snakemake-RNAseq-main snakemake-RNAseq
+```
 
 ### Option 2: git clone
 Clone the pipeline using the following command
 ```
 git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ```
-There should be a folder named ```snakemake-RNAseq``` in users' working directory. If users modify the name of this folder, they should also modify the contents of ```job_template.sh``` to make the name of the directory containing ```Snakefile``` consistent with the modified folder name. 
+Make sure there is a folder named ```snakemake-RNAseq``` in users' working directory. 
 
 ## Usage 
 ### Instructions for preparing sample sheet
