@@ -77,6 +77,7 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 * **Step 3: Run snakemake pipeline**
   
   ```
+  snakemake --unlock
   snakemake --executor cluster-generic --jobs 50 --latency-wait 60 --cluster-generic-submit-cmd "qsub -l h_vmem=64G, -pe pvm 32 -o $HOME/snakemake-RNAseq/joblogs/ -e $HOME/snakemake-RNAseq/joblogs/"
   ```
   * This step might take long, depending on the sample sizes.
