@@ -45,8 +45,8 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ### Instructions for preparing sample sheet
 * Paired-end data is assumed.
 * 3 types of RNAseq data formats are accommodated: **.fastq.gz, .fq.gz, .fastq**
-* The ```samples.tsv``` file is an example sample sheet.
-* Users should modify ```samples.tsv``` to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
+* The ```config/samples.tsv``` file is an example sample sheet.
+* Users should modify ```config/samples.tsv``` to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
 * The fq1 & fq2 file names must contain the full sample names.
   
   For example: 
@@ -55,9 +55,15 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 293T-TFE3-2 293T-TFE3-2_R1_001.fastq.gz 293T-TFE3-2_R2_001.fastq.gz
 ```
 ### Input files
-* Users should **create a folder named ```data``` in the directory of ```snakemake-RNAseq```**.
 * The fq1 & fq2 files for analysis should be copied to ```data```.
-
+  ```
+  cp -r path/to/fq files folder $HOME/snakemake-RNAseq/
+  ```
+* Users should **change the name of the folder containing fq files into ```data```**.
+  ```
+  mv $HOME/snakemake-RNAseq/FOLDER_NAME $HOME/snakemake-RNAseq/data
+  ```
+  
 ### Run snakemake
 * **Step 1: Change into the directory ```snakemake-RNAseq```**
   
