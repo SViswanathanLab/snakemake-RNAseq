@@ -36,7 +36,10 @@ Clone the pipeline using the following command
 ```
 git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ```
-Make sure there is a folder named ```snakemake-RNAseq``` in users' working directory. 
+
+
+**Make sure there is a folder named ```snakemake-RNAseq``` in users' working directory.**
+
 
 ## Usage 
 ### Instructions for preparing sample sheet
