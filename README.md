@@ -8,8 +8,7 @@ This pipeline performs a standard RNAseq analysis, including fastQC, STAR alignm
 ├── rules             # Snakemake rules
 ├── scripts           # Scripts to run each step of RNAseq
 ├── README.md
-├── Snakefile         # Snakemake workflow
-└── job_template.sh   # A template for argos job submission, modified by users as needed
+└── Snakefile         # Snakemake workflow
 
 ```
 ## Installation
