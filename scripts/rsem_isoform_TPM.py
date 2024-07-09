@@ -8,7 +8,7 @@ import subprocess
 try:
     import pyreadr
 except ImportError:
-    subprocess.check_all([sys.executable, "-m", "pip", "install", "pyreadr"])
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "pyreadr"])
     import pyreadr
 
 # load the annotation file
