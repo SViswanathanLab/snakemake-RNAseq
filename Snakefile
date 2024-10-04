@@ -26,7 +26,7 @@ fq2_suffix = fq2[0].replace(Samples[0], "")
 
 ###### Get wildcards for Reads (accomodate 3 patterns: .fastq.gz, .fq.gz, .fastq)
 # Define the patterns with possible suffixes
-patterns = ["data/{Read}.fastq.gz", "data/{Read}.fastq", "data/{Read}.fq.gz"]
+patterns = ["data/{Read}.fastq.gz", "data/{Read}.fastq", "data/{Read}.fq.gz", "data/{Read}.fq"]
 # Use glob_wildcards to find matching files
 Reads = set()
 for pattern in patterns:
@@ -39,8 +39,10 @@ if ".fastq.gz" in fq1_suffix:
     include: "rules/preAlignQC_fastq_gz.smk",
 elif ".fq.gz" in fq1_suffix:
     include: "rules/preAlignQC_fq_gz.smk",
-else:
+elif ".fastq" in fq1_suffix:
     include: "rules/preAlignQC_fastq.smk",
+else:
+    include: "rules/preAlignQC_fq.smk",
 
 include: "rules/starAlign.smk",
 include: "rules/salmonQuant.smk",
