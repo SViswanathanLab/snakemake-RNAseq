@@ -84,7 +84,7 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
   
   ```
   snakemake --unlock
-  snakemake --executor cluster-generic --jobs 50 --latency-wait 60 --cluster-generic-submit-cmd "qsub -l h_vmem=64G, -pe pvm 32 -o $HOME/snakemake-RNAseq/joblogs/ -e $HOME/snakemake-RNAseq/joblogs/"
+  snakemake --executor cluster-generic --jobs 50 --latency-wait 60 --cluster-generic-submit-cmd "qsub -l h_vmem=256G, -pe pvm 32 -o $HOME/snakemake-RNAseq/joblogs/ -e $HOME/snakemake-RNAseq/joblogs/"
   ```
   * This step might take long, depending on the sample sizes.
   * If the command execution is interrupted, users need to rerun Step 3 to generate all results expected.
