@@ -44,7 +44,7 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 ## Usage 
 ### Instructions for preparing sample sheet
 * Paired-end data is assumed.
-* 3 types of RNAseq data formats are accommodated: **.fastq.gz, .fq.gz, .fastq**
+* 4 types of RNAseq data formats are accommodated: **.fastq.gz, .fq.gz, .fastq, .fq**
 * The ```config/samples.tsv``` file is an example sample sheet.
 * Users should modify ```config/samples.tsv``` to have the first column consisting of sample names, the second column consisting of fq1 file names, and the third column consisting of fq2 file names. Each column is separated by **one space**. 
 * The fq1 & fq2 file names must contain the full sample names.
