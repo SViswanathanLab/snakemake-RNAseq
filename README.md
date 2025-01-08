@@ -65,13 +65,19 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
   ```
   
 ### Run snakemake
-* **Step 1: Change into the directory ```snakemake-RNAseq```**
+* **Step 1: Initiate a screen to run snakemake pipeline in the background without requiring terminal connection all the time**
+  
+  ```
+  screen -S snakemake-RNAseq
+  ```
+  
+* **Step 2: Change into the directory ```snakemake-RNAseq```**
   
   ```
   cd $HOME/snakemake-RNAseq
   ```
   
-* **Step 2: Activate the environment with snakemake installed & install plugin for cluster submission**
+* **Step 3: Activate the environment with snakemake installed & install plugin for cluster submission**
   
   ```
   source /mnt/storage/apps/Mambaforge-23.1.0-1/etc/profile.d/conda.sh
@@ -80,20 +86,38 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
   pip install snakemake-executor-plugin-cluster-generic
   ```
   
-* **Step 3: Run snakemake pipeline**
+* **Step 4: Run snakemake pipeline**
   
   ```
   snakemake --unlock
   snakemake --executor cluster-generic --jobs 50 --latency-wait 60 --cluster-generic-submit-cmd "qsub -l h_vmem=256G, -pe pvm 32 -o $HOME/snakemake-RNAseq/joblogs/ -e $HOME/snakemake-RNAseq/joblogs/"
   ```
   * This step might take long, depending on the sample sizes.
-  * If the command execution is interrupted, users need to rerun Step 3 to generate all results expected.
   
-* **Step 4: Deactivate the environment as needed**
+* **Step 4: Detach the screen as needed**
+  
+  * Press ```Ctrl+A``` and then ```D``` to detach the screen as needed. Now closing the terminal or losing connection to the cluster should not interrupt the snakemake pipeline.
+  * Use ```screen -ls``` to see all detached screens.
+  * Example:
+  
+    <img width="700" alt="Screenshot 2024-01-08 at 4 26 12 PM" src="https://github.com/user-attachments/assets/4611deb8-0771-4f43-9a29-ba7555cd166b">
+    
+    **numbers like 27120 and 26844 are ```<SCREEN-ID>``` used to track the processes running in that screen**
+  
+* **Step 5 (Optional): Reattach to a screen**
+
+  ```
+  screen -r <SCREEN-ID>
+  ```
+  * If the command execution in the screen is interrupted, users need to rerun Step 4 in the screen to generate all results expected.
+  * Press ```Ctrl+A``` and then ```D``` to detach the screen as needed.
+  
+* **Step 6: Delete the screen after done**
   
   ```
-  conda deactivate
+  screen -S <SCREEN-ID> -X quit
   ```
+
   
 ### Output
 * The results are saved in the folder ```snakemake-RNAseq/results```.
