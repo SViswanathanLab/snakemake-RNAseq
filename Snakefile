@@ -13,7 +13,7 @@ fq1 = []
 fq2 = []
 with open(config["samples"]) as file:
     for line in file:
-        l = line.strip().split(' ')
+        l = line.strip().split(',')
         if len(l) == 3:
             Samples.append(l[0])
             fq1.append(l[1])
