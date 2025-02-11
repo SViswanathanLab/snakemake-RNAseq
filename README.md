@@ -50,6 +50,7 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
   * 2nd column: fq1 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
   * 3rd column: fq2 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
   * 4th column: RNA-seq file format - choose between **bam** and **fq** (all inputs need to be in the same file format)
+    
   **Each column is separated by one comma.** 
   **The fq1 & fq2 file names must contain the full sample names.**
   
