@@ -46,12 +46,12 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
 * Paired-end data is assumed.
 * 5 types of RNAseq data formats are accommodated: **.bam, .fastq.gz, .fq.gz, .fastq, .fq**
 * The ```config/samples.csv``` file is an example sample sheet, modify it as needed so that
-      * 1st column: sample names
-      * 2nd column: fq1 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
-      * 3rd column: fq2 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
-      * 4th column: RNA-seq file format - choose between **bam** and **fq** (all inputs need to be in the same file format)
-      **Each column is separated by one comma.** 
-      **The fq1 & fq2 file names must contain the full sample names.**
+  * 1st column: sample names
+  * 2nd column: fq1 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
+  * 3rd column: fq2 file names (if using .bam as input, put the name of .fastq.gz files generated from .bam)
+  * 4th column: RNA-seq file format - choose between **bam** and **fq** (all inputs need to be in the same file format)
+  **Each column is separated by one comma.** 
+  **The fq1 & fq2 file names must contain the full sample names.**
   
   For example: 
 ```
