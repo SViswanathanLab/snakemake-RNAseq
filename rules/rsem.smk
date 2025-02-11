@@ -28,9 +28,9 @@ rule rsem_quant:
         "results/rsem_results/{Sample}/{Sample}.isoforms.results",
     log:
         "logs/rsem_quant/{Sample}.log"
-    threads: 30
+    threads: 8
     params:
-        threads=30
+        threads=8
     script:
         "../scripts/rsemQuant.sh"
 

@@ -1,0 +1,14 @@
+rule bam_to_fastq:
+    input:
+        bam_files="data/{Sample}.bam",
+    output:
+        "data/{Sample}_sorted.bam",
+        "data/{Sample}_R1.fastq.gz",
+        "data/{Sample}_R2.fastq.gz",
+    log:
+        "logs/bam_to_fastq/{Sample}.log"
+    threads: 8
+    params:
+        threads=8,
+    script:
+        "../scripts/bam_to_fastq.sh"

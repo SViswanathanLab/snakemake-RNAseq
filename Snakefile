@@ -11,13 +11,15 @@ fa_path = config["fa_path"]
 Samples = []
 fq1 = []
 fq2 = []
+type = []
 with open(config["samples"]) as file:
     for line in file:
         l = line.strip().split(',')
-        if len(l) == 3:
+        if len(l) == 4:
             Samples.append(l[0])
             fq1.append(l[1])
             fq2.append(l[2])
+            type.append(l[3])
 
 # Assume the full sample name is within the fq1 and fq2 file name
 # Get the suffix of the seq file name excluding the sample name, used in starAlign.smk and salmonQuant.smk
@@ -34,6 +36,18 @@ for pattern in patterns:
 # Convert set to list
 Reads = list(Reads)
 
+
+###### Accomodate .bam files
+if all(i == "bam" for i in type):
+    include: "rules/bam_to_fastq.rmk",
+    input1 = [
+        expand("data/{Sample}_sorted.bam", Sample=Samples),
+        expand("data/{Sample}_R1.fastq.gz", Sample=Samples),
+        expand("data/{Sample}_R2.fastq.gz", Sample=Samples),
+    ]
+else:
+    input1 = []
+
 ###### Perform fastQC based on the file type
 if ".fastq.gz" in fq1_suffix:
     include: "rules/preAlignQC_fastq_gz.smk",
@@ -49,20 +63,26 @@ include: "rules/salmonQuant.smk",
 include: "rules/countMatrix.smk",
 include: "rules/rsem.smk",
 
+input2 = [
+    expand("results/fastqc_results/{Read}_fastqc.zip", Read=Reads),
+    expand("results/fastqc_results/{Read}_fastqc.html", Read=Reads),
+    expand("results/STAR_results/{Sample}/{Sample}_Log.final.out", Sample=Samples),
+    "results/star_wide_countMatrix.csv",
+    "results/star_wide_countMatrix.Rds",
+    expand("results/salmon_results/{Sample}/quant.sf", Sample=Samples),
+    "results/salmon_wide_TPM_Matrix.csv",
+    "results/salmon_wide_TPM_Matrix.Rds",
+    multiext("rsem_ref/human_gencode", ".chrlist", ".n2g.idx.fa", ".transcripts.fa", ".grp", ".seq", ".idx.fa", ".ti"),
+    expand("results/rsem_results/{Sample}/{Sample}.genes.results", Sample=Samples),
+    expand("results/rsem_results/{Sample}/{Sample}.isoforms.results", Sample=Samples),
+    "results/rsem_geneLevel_wide_TPM_Matrix.csv",
+    "results/rsem_geneLevel_wide_TPM_Matrix.Rds",
+    "results/rsem_isoformLevel_wide_TPM_Matrix.csv",
+    "results/rsem_isoformLevel_wide_TPM_Matrix.Rds",
+]
+
+All_inputs = input1 + input2
+
 rule all:
     input:
-        expand("results/fastqc_results/{Read}_fastqc.zip", Read=Reads),
-        expand("results/fastqc_results/{Read}_fastqc.html", Read=Reads),
-        expand("results/STAR_results/{Sample}/{Sample}_Log.final.out", Sample=Samples),
-        "results/star_wide_countMatrix.csv",
-        "results/star_wide_countMatrix.Rds",
-        expand("results/salmon_results/{Sample}/quant.sf", Sample=Samples),
-        "results/salmon_wide_TPM_Matrix.csv",
-        "results/salmon_wide_TPM_Matrix.Rds",
-        multiext("rsem_ref/human_gencode", ".chrlist", ".n2g.idx.fa", ".transcripts.fa", ".grp", ".seq", ".idx.fa", ".ti"),
-        expand("results/rsem_results/{Sample}/{Sample}.genes.results", Sample=Samples),
-        expand("results/rsem_results/{Sample}/{Sample}.isoforms.results", Sample=Samples),
-        "results/rsem_geneLevel_wide_TPM_Matrix.csv",
-        "results/rsem_geneLevel_wide_TPM_Matrix.Rds",
-        "results/rsem_isoformLevel_wide_TPM_Matrix.csv",
-        "results/rsem_isoformLevel_wide_TPM_Matrix.Rds",
+        All_inputs
