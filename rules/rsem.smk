@@ -6,6 +6,9 @@ rule rsem_reference:
         multiext("rsem_ref/human_gencode", ".chrlist", ".n2g.idx.fa", ".transcripts.fa", ".grp", ".seq", ".idx.fa", ".ti")
     log:
         "logs/rsem_ref.log"
+    threads: 16
+    params:
+        threads=16,
     shell:
         """
         source /etc/profile.d/modules.sh
@@ -16,7 +19,7 @@ rule rsem_reference:
 
         mkdir -p rsem_ref
 
-        rsem-prepare-reference --gtf {input.gtf} {input.fa} rsem_ref/human_gencode
+        rsem-prepare-reference -p {params.threads} --gtf {input.gtf} {input.fa} rsem_ref/human_gencode
         """
 
 rule rsem_quant:
@@ -28,9 +31,9 @@ rule rsem_quant:
         "results/rsem_results/{Sample}/{Sample}.isoforms.results",
     log:
         "logs/rsem_quant/{Sample}.log"
-    threads: 8
+    threads: 16
     params:
-        threads=8
+        threads=16,
     script:
         "../scripts/rsemQuant.sh"
 
