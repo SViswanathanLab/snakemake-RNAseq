@@ -6,7 +6,9 @@ rule fastqc:
         "results/fastqc_results/{Read}_fastqc.html",
     log:
         "logs/fastqc/{Read}.log"
-    threads: 8
+    threads: 16
+    params:
+        threads=16,
     shell:
         """
         source /etc/profile.d/modules.sh
@@ -17,5 +19,5 @@ rule fastqc:
 
         mkdir -p results/fastqc_results
 
-        fastqc -o results/fastqc_results/ -t 6 {input}
+        fastqc -o results/fastqc_results/ -t 6 {input} --threads {params.threads}
         """
