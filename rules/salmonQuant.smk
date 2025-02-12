@@ -6,9 +6,9 @@ rule salmon_quant:
         "results/salmon_results/{Sample}/quant.sf"
     log:
         "logs/salmon_quant/{Sample}.log"
-    threads: 8
+    threads: 16
     params:
-        threads=8
+        threads=16,
     script:
         "../scripts/salmonQuant.sh"
 
