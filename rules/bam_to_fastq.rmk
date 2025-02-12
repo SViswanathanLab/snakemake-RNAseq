@@ -7,8 +7,8 @@ rule bam_to_fastq:
         "data/{Sample}_R2.fastq.gz",
     log:
         "logs/bam_to_fastq/{Sample}.log"
-    threads: 8
+    threads: 16
     params:
-        threads=8,
+        threads=16,
     script:
         "../scripts/bam_to_fastq.sh"
