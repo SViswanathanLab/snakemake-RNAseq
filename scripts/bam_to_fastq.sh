@@ -15,5 +15,5 @@ r2="${snakemake_output[2]}"
 OUTDIR=$(dirname "${snakemake_output[0]}")
 mkdir -p $OUTDIR # Create directory if it doesn't exist
 
-samtools sort -n $read -o $Sorted_bam
+samtools sort -@ $THREADS -n $read -o $Sorted_bam
 samtools fastq -@ $THREADS $Sorted_bam -1 $r1 -2 $r2 -0 /dev/null -s /dev/null -n
