@@ -9,8 +9,8 @@ rule Align:
         "results/STAR_results/{Sample}/{Sample}_Log.final.out",
     log:
         "logs/star/{Sample}.log"
-    threads: 8
+    threads: 16
     params:
-        threads=8
+        threads=16,
     script:
         "../scripts/starAlign.sh"
