@@ -56,8 +56,8 @@ git clone https://github.com/SViswanathanLab/snakemake-RNAseq.git
   
   For example: 
 ```
-293T-TFE3-1,293T-TFE3-1_R1_001.fastq.gz,293T-TFE3-1_R2_001.fastq.gz,bam
-293T-TFE3-2,293T-TFE3-2_R1_001.fastq.gz,293T-TFE3-2_R2_001.fastq.gz,bam
+293T-TFE3-1,293T-TFE3-1_R1.fastq.gz,293T-TFE3-1_R2.fastq.gz,bam
+293T-TFE3-2,293T-TFE3-2_R1.fastq.gz,293T-TFE3-2_R2.fastq.gz,bam
 ```
 ### Input files
 * The RNAseq files for analysis should be copied to ```data```.
